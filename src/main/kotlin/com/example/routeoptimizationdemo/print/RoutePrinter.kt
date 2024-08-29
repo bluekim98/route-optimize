@@ -1,12 +1,14 @@
 package com.example.routeoptimizationdemo.print
 
-import com.example.routeoptimizationdemo.data.Location
+import com.example.routeoptimizationdemo.data.TSPBestSolution
 
 class RoutePrinter {
-    fun printGPS(route: List<Location>) {
+    fun printTSPBest(best: TSPBestSolution) {
+        println("============== Best cost ==============")
+        println("distance: ${best.distance}")
         println("============== GPS coordinates ==============")
-        route.forEach { location ->
-            val str = "${location.lat},${location.lon},true"
+        best.route.forEach { location ->
+            val str = "${location.lat},${location.lon},true,${location.id}"
             println(str)
         }
         println("=============================================")

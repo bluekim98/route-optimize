@@ -1,9 +1,10 @@
 package com.example.routeoptimizationdemo.solution
 
 import com.example.routeoptimizationdemo.data.Location
+import com.example.routeoptimizationdemo.data.TSPBestSolution
 
 class BruteForceTSPSolution : TSPSolution {
-    override fun solve(route: List<Location>, matrix: Map<String, Map<String, Double>>): List<Location> {
+    override fun solve(route: List<Location>, matrix: Map<String, Map<String, Double>>): TSPBestSolution {
         val permutations = recursion(route)
         var minDistance = Double.MAX_VALUE
         var bestRoute = emptyList<Location>()
@@ -17,7 +18,7 @@ class BruteForceTSPSolution : TSPSolution {
             }
         }
 
-        return bestRoute
+        return TSPBestSolution(bestRoute, minDistance)
     }
 
     private fun recursion(route: List<Location>): List<List<Location>> {

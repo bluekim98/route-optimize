@@ -6,6 +6,7 @@ import com.example.routeoptimizationdemo.distance.EuclideanDistanceCalculator
 import com.example.routeoptimizationdemo.mock.RouteMock
 import com.example.routeoptimizationdemo.print.RoutePrinter
 import com.example.routeoptimizationdemo.solution.BruteForceTSPSolution
+import com.example.routeoptimizationdemo.solution.DynamicProgrammingTSPSolution
 import com.example.routeoptimizationdemo.solution.TSPSolution
 
 class RouteOptimizationDemoApplication
@@ -13,13 +14,14 @@ class RouteOptimizationDemoApplication
 fun main() {
     val calculator: DistanceCalculator = EuclideanDistanceCalculator()
     val distanceMatrixGenerator = DistanceMatrixGenerator(calculator)
-    val solution: TSPSolution = BruteForceTSPSolution()
-    val printer = RoutePrinter()
 
-    val route = RouteMock.D102
+    val route = RouteMock.D102_1
     val matrix = distanceMatrixGenerator.generate(route)
+
+    val solution: TSPSolution = BruteForceTSPSolution()
+//    val solution: TSPSolution = DynamicProgrammingTSPSolution()
 
     val best = solution.solve(route, matrix)
 
-    printer.printGPS(best)
+    RoutePrinter().printTSPBest(best)
 }
